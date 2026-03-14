@@ -2,33 +2,33 @@ const MAX_LOGGED_STEPS = 160;
 
 const algorithms = {
   insertion: {
-    name: "Сортировка вставками",
-    blurb: "Строит отсортированную часть массива, вставляя элементы на нужные позиции.",
-    complexity: "O(n²) | стабильная",
+    name: "Сортування вставками",
+    blurb: "Будує відсортовану частину масиву, вставляючи елементи на потрібні позиції.",
+    complexity: "O(n²) | стабільна",
     run: insertionSort,
   },
   selection: {
-    name: "Сортировка прямым выбором",
-    blurb: "Последовательно находит минимальный элемент и ставит его на место.",
-    complexity: "O(n²) | нестабильная",
+    name: "Сортування прямим вибором",
+    blurb: "Послідовно знаходить мінімальний елемент і ставить його на місце.",
+    complexity: "O(n²) | нестабільна",
     run: selectionSort,
   },
   bubble: {
-    name: "Сортировка пузырьком",
-    blurb: "Поднимает крупные элементы к концу массива через серию обменов.",
-    complexity: "O(n²) | стабильная",
+    name: "Сортування бульбашкою",
+    blurb: "Підіймає великі елементи до кінця масиву через серію обмінів.",
+    complexity: "O(n²) | стабільна",
     run: bubbleSort,
   },
   shell: {
-    name: "Сортировка Шелла",
-    blurb: "Сравнивает элементы на убывающих расстояниях (gap), ускоряя упорядочивание.",
+    name: "Сортування Шелла",
+    blurb: "Порівнює елементи на спадних відстанях (gap), пришвидшуючи впорядкування.",
     complexity: "≈ O(n log² n)",
     run: shellSort,
   },
   hoare: {
-    name: "Быстрая сортировка (Хоар)",
-    blurb: "Делит массив по опорному элементу и рекурсивно упорядочивает части.",
-    complexity: "O(n log n) в среднем",
+    name: "Швидке сортування (Гоар)",
+    blurb: "Ділить масив за опорним елементом і рекурсивно впорядковує частини.",
+    complexity: "O(n log n) в середньому",
     run: quickSortHoare,
   },
 };
@@ -57,11 +57,11 @@ function formatArray(arr) {
 function parseNumbers(value) {
   const parts = value.split(/[\s,;]+/).filter(Boolean);
   if (!parts.length) {
-    throw new Error("Введите хотя бы одно число.");
+    throw new Error("Введіть хоча б одне число.");
   }
   const numbers = parts.map((n) => Number(n));
   if (numbers.some((n) => Number.isNaN(n))) {
-    throw new Error("Используйте только числа (через пробел или запятую).");
+    throw new Error("Використовуйте лише числа (через пробіл або кому).");
   }
   return numbers;
 }
@@ -96,10 +96,10 @@ function selectionSort(source, limit) {
       [arr[i], arr[minIdx]] = [right, left];
       swaps += 1;
       if (steps.length < limit) {
-        steps.push(`Шаг ${i + 1}: min → индекс ${minIdx}, обмен ${left} ↔ ${right}`);
+        steps.push(`Крок ${i + 1}: min → індекс ${minIdx}, обмін ${left} ↔ ${right}`);
       }
     } else if (steps.length < limit) {
-      steps.push(`Шаг ${i + 1}: элемент ${arr[i]} уже минимален`);
+      steps.push(`Крок ${i + 1}: елемент ${arr[i]} вже мінімальний`);
     }
   }
 
@@ -123,13 +123,13 @@ function bubbleSort(source, limit) {
         swaps += 1;
         swapped = true;
         if (steps.length < limit) {
-          steps.push(`Пузырёк ${pass}.${i + 1}: ${arr[i + 1]} поднялся над ${arr[i]}`);
+          steps.push(`Бульбашка ${pass}.${i + 1}: ${arr[i + 1]} піднялася над ${arr[i]}`);
         }
       }
     }
     pass += 1;
     if (!swapped && steps.length < limit) {
-      steps.push("Дальнейшие проходы не нужны — массив отсортирован.");
+      steps.push("Далі проходи не потрібні — масив відсортований.");
     }
   } while (swapped);
 
@@ -146,7 +146,7 @@ function insertionSort(source, limit) {
     const current = arr[i];
     let j = i - 1;
     if (steps.length < limit) {
-      steps.push(`Берём ${current} и ищем место слева.`);
+      steps.push(`Беремо ${current} і шукаємо місце ліворуч.`);
     }
     while (j >= 0 && arr[j] > current) {
       comparisons += 1;
@@ -159,7 +159,7 @@ function insertionSort(source, limit) {
     }
     arr[j + 1] = current;
     if (steps.length < limit) {
-      steps.push(`Вставляем ${current} на позицию ${j + 1}.`);
+      steps.push(`Вставляємо ${current} на позицію ${j + 1}.`);
     }
   }
 
@@ -176,7 +176,7 @@ function shellSort(source, limit) {
 
   while (gap > 0) {
     if (steps.length < limit) {
-      steps.push(`Гэп ${gap}: сравниваем элементы на расстоянии.`);
+      steps.push(`Геп ${gap}: порівнюємо елементи на відстані.`);
     }
     for (let i = gap; i < arr.length; i += 1) {
       const temp = arr[i];
@@ -192,7 +192,7 @@ function shellSort(source, limit) {
       }
       arr[j] = temp;
       if (steps.length < limit) {
-        steps.push(`Волна ${wave}: элемент ${temp} смещён в позицию ${j}.`);
+        steps.push(`Хвиля ${wave}: елемент ${temp} зміщений у позицію ${j}.`);
       }
       wave += 1;
     }
@@ -218,7 +218,7 @@ function quickSortHoare(source, limit) {
     const pivot = arr[Math.floor((left + right) / 2)];
     let i = left - 1;
     let j = right + 1;
-    log(`Опорный элемент = ${pivot} для диапазона [${left}, ${right}]`);
+    log(`Опорний елемент = ${pivot} для діапазону [${left}, ${right}]`);
 
     while (true) {
       do {
@@ -237,7 +237,7 @@ function quickSortHoare(source, limit) {
 
       [arr[i], arr[j]] = [arr[j], arr[i]];
       swaps += 1;
-      log(`Обмен ${arr[j]} ↔ ${arr[i]} (после сравнения с опорным ${pivot})`);
+      log(`Обмін ${arr[j]} ↔ ${arr[i]} (після порівняння з опорним ${pivot})`);
     }
   };
 
@@ -257,7 +257,7 @@ function renderSteps(steps, truncated) {
   ui.stepsList.innerHTML = "";
   if (!steps.length) {
     const li = document.createElement("li");
-    li.textContent = "Для этого массива перестановки не потребовались.";
+    li.textContent = "Для цього масиву перестановки не знадобилися.";
     li.className = "muted";
     ui.stepsList.appendChild(li);
     return;
@@ -271,7 +271,7 @@ function renderSteps(steps, truncated) {
 
   if (truncated) {
     const li = document.createElement("li");
-    li.textContent = "Часть шагов скрыта, чтобы интерфейс оставался отзывчивым.";
+    li.textContent = "Частину кроків приховано, щоб інтерфейс залишався швидким.";
     li.className = "muted";
     ui.stepsList.appendChild(li);
   }
@@ -289,8 +289,8 @@ function renderResult(original, sorted, steps, truncated, algoKey) {
   ui.sortedOutput.textContent = formatArray(sorted);
   ui.about.textContent = `${algo.name}: ${algo.blurb} — ${algo.complexity}`;
   ui.stepsHint.textContent = truncated
-    ? "Показаны первые шаги, остальные скрыты."
-    : "Полный ход алгоритма для заданного массива.";
+    ? "Показані перші кроки, решта приховані."
+    : "Повний хід алгоритму для заданого масиву.";
   renderSteps(steps, truncated);
 }
 
@@ -300,7 +300,7 @@ function handleSort() {
     const algoKey = ui.algoSelect.value;
     const algo = algorithms[algoKey];
     if (!algo) {
-      throw new Error("Выберите алгоритм сортировки.");
+      throw new Error("Оберіть алгоритм сортування.");
     }
 
     const start = performance.now();
@@ -320,7 +320,7 @@ function handleSort() {
     li.textContent = error.message;
     li.className = "muted";
     ui.stepsList.appendChild(li);
-    ui.stepsHint.textContent = "Исправьте ввод и повторите.";
+    ui.stepsHint.textContent = "Виправте ввід і повторіть.";
     ui.timeMetric.textContent = "—";
     ui.swapMetric.textContent = "—";
     ui.compareMetric.textContent = "—";
@@ -344,11 +344,11 @@ function handleClear() {
   ui.sortedOutput.textContent = "—";
   ui.stepsList.innerHTML = "";
   const li = document.createElement("li");
-  li.textContent = "Шаги появятся здесь после запуска.";
+  li.textContent = "Кроки з'являться тут після запуску.";
   li.className = "muted";
   ui.stepsList.appendChild(li);
-  ui.about.textContent = "Выберите алгоритм и нажмите «Сортировать».";
-  ui.stepsHint.textContent = "Нажмите «Сортировать», чтобы увидеть детали.";
+  ui.about.textContent = "Оберіть алгоритм і натисніть «Сортувати».";
+  ui.stepsHint.textContent = "Натисніть «Сортувати», щоб побачити деталі.";
   ui.timeMetric.textContent = "—";
   ui.swapMetric.textContent = "—";
   ui.compareMetric.textContent = "—";
