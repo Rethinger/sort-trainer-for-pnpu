@@ -1,0 +1,21 @@
+{
+  "name": "insertion-sort-for-pnpu",
+  "version": "1.0.0",
+  "description": "Інтерактивні приклади сортувань (вставки, вибір, бульбашка, Шелл, Гоар)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Тестів поки немає — можна запускати демо у браузері\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rethinger/insertion-sort-for-pnpu.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Rethinger/insertion-sort-for-pnpu/issues"
+  },
+  "homepage": "https://github.com/Rethinger/insertion-sort-for-pnpu#readme"
+}
