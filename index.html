@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Визуализация сортировок</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__text">
+      <p class="eyebrow">Алгоритмы сортировки</p>
+      <h1>Живая галерея алгоритмов</h1>
+      <p class="lede">Сравните разные подходы: вставки, прямой выбор, пузырёк, Шелл и быстрая сортировка Хоара.</p>
+      <div class="hero__chips">
+        <span class="chip">Пошаговый разбор</span>
+        <span class="chip">Случайные данные</span>
+        <span class="chip">Сложность и показатели</span>
+      </div>
+    </div>
+    <div class="hero__glass">
+      <div class="glow glow--a"></div>
+      <div class="glow glow--b"></div>
+      <p>Переключайте алгоритмы и наблюдайте, как меняются шаги, затраты и результат.</p>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="card">
+      <div class="section-title">
+        <div>
+          <p class="eyebrow">Исходные данные</p>
+          <h2>Подготовьте массив</h2>
+        </div>
+        <div class="hint">Данные парсятся по пробелам, запятым или точкам с запятой.</div>
+      </div>
+      <label class="field">
+        <span>Числа</span>
+        <textarea id="numbersInput" rows="4" placeholder="Например: 12, 4, 7, 2, 9, 1"></textarea>
+      </label>
+      <div class="form-grid">
+        <label class="field">
+          <span>Алгоритм</span>
+          <select id="algoSelect">
+            <option value="insertion">Вставки</option>
+            <option value="selection">Прямой выбор</option>
+            <option value="bubble">Пузырёк</option>
+            <option value="shell">Шелла</option>
+            <option value="hoare">Быстрая (Хоар)</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Размер случайного массива</span>
+          <input id="randomSize" type="number" min="4" max="64" value="12">
+        </label>
+      </div>
+      <div class="actions">
+        <button id="generateBtn" class="btn ghost">Сгенерировать</button>
+        <div class="spacer"></div>
+        <button id="clearBtn" class="btn ghost">Очистить</button>
+        <button id="sortBtn" class="btn primary">Сортировать</button>
+      </div>
+      <p class="note">Для больших массивов выводится первые шаги, чтобы интерфейс оставался быстрым.</p>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <div>
+          <p class="eyebrow">Результат</p>
+          <h2>Ход выполнения</h2>
+        </div>
+        <div class="pill" id="algorithmAbout">Выберите алгоритм и нажмите «Сортировать».</div>
+      </div>
+
+      <div class="metrics">
+        <div class="metric">
+          <p class="metric__label">Время</p>
+          <p class="metric__value" id="timeMetric">—</p>
+        </div>
+        <div class="metric">
+          <p class="metric__label">Перестановки</p>
+          <p class="metric__value" id="swapMetric">—</p>
+        </div>
+        <div class="metric">
+          <p class="metric__label">Сравнения</p>
+          <p class="metric__value" id="compareMetric">—</p>
+        </div>
+      </div>
+
+      <div class="panels">
+        <div class="panel">
+          <p class="panel__title">Исходный порядок</p>
+          <pre id="rawOutput" class="code-block">—</pre>
+        </div>
+        <div class="panel">
+          <p class="panel__title">Отсортированный</p>
+          <pre id="sortedOutput" class="code-block">—</pre>
+        </div>
+      </div>
+
+      <div class="steps">
+        <div class="steps__header">
+          <h3>Шаги алгоритма</h3>
+          <span class="muted" id="stepsHint">Нажмите «Сортировать», чтобы увидеть детали.</span>
+        </div>
+        <ol id="stepsList" class="steps__list">
+          <li class="muted">Шаги появятся здесь после запуска.</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Сортировки: вставки, прямой выбор, пузырёк, Шелл, Хоар. Наглядное сравнение подходов.</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
